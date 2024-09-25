@@ -1,5 +1,4 @@
 const express = require("express");
-require('dotenv').config();
 const fetchuser = require("../middleware/fetchuser");
 const router = express.Router();
 const Notes = require("../models/Notes");
