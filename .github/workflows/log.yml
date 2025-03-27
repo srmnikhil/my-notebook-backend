@@ -13,7 +13,7 @@ jobs:
       - name: Ping Server and Log Response
         run: |
           START_TIME=$(date +%s)  
-          RESPONSE=$(curl -s -w "\n%{time_total}\n%{http_code}" -X GET "https://my-notebook-backend-d61x.onrender.com/") 
+          RESPONSE=$(curl -s -w "\n%{time_total}\n%{http_code}" -X GET "https://design-challenge-syoc.onrender.com/") 
           END_TIME=$(date +%s)  
           ELAPSED_TIME=$((END_TIME - START_TIME))  
 
@@ -27,7 +27,7 @@ jobs:
           echo "📜 Response: ${BODY}" >> logs.txt
 
       - name: Save Logs as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # 🔥 Version updated to v4
         with:
           name: ping-logs
           path: logs.txt
