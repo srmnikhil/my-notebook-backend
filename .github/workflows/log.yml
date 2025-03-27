@@ -1,0 +1,33 @@
+name: Keep Render Alive
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Runs every 1 minute
+  workflow_dispatch:  # Allows manual execution
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Server and Log Response
+        run: |
+          START_TIME=$(date +%s)  
+          RESPONSE=$(curl -s -w "\n%{time_total}\n%{http_code}" -X GET "https://my-notebook-backend-d61x.onrender.com/") 
+          END_TIME=$(date +%s)  
+          ELAPSED_TIME=$((END_TIME - START_TIME))  
+
+          RESPONSE_TIME=$(echo "$RESPONSE" | tail -2 | head -1)  
+          HTTP_STATUS=$(echo "$RESPONSE" | tail -1)  
+          BODY=$(echo "$RESPONSE" | head -n -2)  
+
+          echo "🔹 Ping Time: $(date '+%Y-%m-%d %H:%M:%S')" > logs.txt
+          echo "⏳ Elapsed Time: ${ELAPSED_TIME}s" >> logs.txt
+          echo "🌐 HTTP Status: ${HTTP_STATUS}" >> logs.txt
+          echo "📜 Response: ${BODY}" >> logs.txt
+
+      - name: Save Logs as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ping-logs
+          path: logs.txt
