@@ -28,7 +28,7 @@ jobs:
 
       - name: Save Logs as Artifact
         if: always()  # Ensures logs are saved even if ping fails
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ping-logs
           path: logs.txt
