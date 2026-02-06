@@ -1,4 +1,4 @@
-# 📓 myNoteBook Backend — REST API
+# 📓 myNoteBook Backend — REST APIs
 
 Notebook Backend is a **Node.js & Express-based REST API** built to power a simple and secure note-taking application. It focuses on clean architecture, predictable APIs, and maintainable code — because backend systems should be boring in the best possible way.
 
