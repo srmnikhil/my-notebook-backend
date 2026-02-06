@@ -48,4 +48,4 @@ Built with the mindset that **clarity beats cleverness**.
 - **Mongoose**
 - **JWT (JSON Web Tokens)**
 - **bcrypt**
-- **dotenv**
+- **dotenv** (for environment variables)
